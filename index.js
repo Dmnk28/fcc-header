@@ -9,15 +9,10 @@ app.use(cors({optionsSuccessStatus: 200}));
 const publicPath = __dirname + '/public';
 const indexHtmlPath = publicPath + '/index.html';
 
-const loggingMiddleware = (req, res, next) => {
-  console.log(`Methode: ${req.method}, Pfad ${req.path}, IP: ${req.ip}`);
-  next();
-}
-
-const headerMiddleware = (req, res, next) => {
-
-  next();
-}
+// const loggingMiddleware = (req, res, next) => {
+//   console.log(`Methode: ${req.method}, Pfad ${req.path}, IP: ${req.ip}`);
+//   next();
+// }
 
 const rootHandler = (req, res) => {
   res.sendFile(indexHtmlPath);
@@ -33,7 +28,7 @@ const headerHandler = (req, res) => {
 
 app.get('/', /*loggingMiddleware,*/ rootHandler);
 app.use('/public', express.static(publicPath));
-app.get('/api/whoami', headerMiddleware, headerHandler)
+app.get('/api/whoami', headerHandler)
 
 app.listen(port, () => {
   console.log(`app listening on port ${port}`)
