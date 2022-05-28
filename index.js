@@ -25,7 +25,9 @@ const rootHandler = (req, res) => {
 
 const headerHandler = (req, res) => {
   res.json({
-    ...req
+    ipaddress: req.ip,
+    language: req.headers["accept-language"],
+    software: req.headers["user-agent"]
   })
 }
 
